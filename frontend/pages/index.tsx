@@ -1,11 +1,12 @@
-import { AppBar } from '@mui/material';
 import Head from 'next/head'
 import styles from '../styles/index.module.css'
-import AppHeader from './components/AppHeader';
+import AppHeader from '../components/AppHeader';
+import useTranslate from '../hooks/useTranslate';
 
 const HomePage = () => {
+  const translate = useTranslate();
   return (
-      <>
+    <>
       <AppHeader />
       <div className={styles.container}>
         <Head>
@@ -14,12 +15,11 @@ const HomePage = () => {
         </Head>
 
         <main className={styles.main}>
-          Welcome to See City
+          {translate('welcome')}
         </main>
 
         <footer className={styles.footer}>
-          Created by Arun S P
-
+          {translate('created-by')} Arun S P
         </footer>
       </div></>
   )
