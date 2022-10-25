@@ -3,7 +3,7 @@
 # Author : Arun S P
 # This script initialises the City App and launches its Backend and Frontend modules
 
-if [ -e db.initialised ]
+if [ -e database-initialised.flag ]
 then
     echo "ok"
 else
