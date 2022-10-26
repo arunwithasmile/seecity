@@ -29,12 +29,11 @@ public class CommonController {
 	@GetMapping("ping")
 	public String ping() {
 		return "I feel so alive!";
-//		return passwordEncoder.encode("S@mpl3User");
 	}
 
 	@PostMapping("user/new")
-	public boolean addUser(@RequestBody User user) {
+	public String addUser(@RequestBody User user) {
 		authService.saveUser(user);
-		return true;
+		return "User " + user.getUsername() + " added successfully";
 	}
 }

@@ -35,6 +35,9 @@ public class City extends BaseEntity {
 		this.photoUrl = photoUrl;
 	}
 
+	public City() {
+	}
+
 	public City(long id, String name, String photoUrl) {
 		super(id);
 		this.name = name;

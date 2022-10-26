@@ -3,13 +3,22 @@
  */
 package com.arun.seecity.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.arun.seecity.dao.CityRepository;
 import com.arun.seecity.model.City;
 
 /**
@@ -19,20 +28,43 @@ import com.arun.seecity.model.City;
 @Service
 public class CityServiceImpl implements CityService {
 
-	private Map<Long, City> cities = new HashMap<>();
+	@Autowired
+	private CityRepository cityRepository;
 
-	public CityServiceImpl() {
-		cities.put(1L, new City(1, "London", "lndn.com"));
-		cities.put(2L, new City(2, "New York", "ny.com"));
-		cities.put(3L, new City(3, "Bengaluru", "blr.com"));
-	}
-
-	public List<City> getCities() {
-		return new ArrayList<City>(cities.values());
+	public Page<City> getCities(String searchString, Pageable pageParams) {
+		if (searchString == null || searchString.isBlank()) {
+			return cityRepository.findAll(pageParams);
+		}
+		return cityRepository.findByNameContainingIgnoreCase(searchString, pageParams);
 	}
 
 	public City getCity(long id) {
-		return cities.get(id);
+		return cityRepository.findById(id).orElse(null);
 	}
 
+	public void bulkUpload(InputStream inputStream) {
+		List<City> cities = getCities(inputStream);
+		cityRepository.saveAll(cities);
+	}
+
+	private List<City> getCities(InputStream inputStream) {
+		try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+				CSVParser csvParser = new CSVParser(fileReader,
+						CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
+
+			List<City> cities = new ArrayList<>();
+
+			Iterable<CSVRecord> csvRecords = csvParser.getRecords();
+
+			for (CSVRecord csvRecord : csvRecords) {
+				City city = new City(Long.parseLong(csvRecord.get("Id")), csvRecord.get("Name"),
+						csvRecord.get("Photo"));
+				cities.add(city);
+			}
+
+			return cities;
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to parse CSV file: " + e.getMessage());
+		}
+	}
 }
