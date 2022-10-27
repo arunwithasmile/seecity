@@ -27,7 +27,7 @@ const usePostApi = () => {
             setState({ loading: false, success: true, data: response.data });
         }).catch((err) => {
             setState({ loading: false, success: false, data: err });
-            console.error(err);
+            console.error("Failed to Update City", err);
         });
     };
 

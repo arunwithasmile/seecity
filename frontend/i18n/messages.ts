@@ -19,8 +19,12 @@ const messageStore = {
                 "profile": "Profile"
             },
             city: {
-                edit: "Edit City",
-                empty: "No Cities found. Try a different search maybe?"
+                edit: {
+                    title: "Edit City",
+                    "access.denied": "You don't have permission to edit a City! How did you arrive here?"
+                },
+                empty: "No Cities found. Try a different search maybe?",
+
             }
         }
     },
