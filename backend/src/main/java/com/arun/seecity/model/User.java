@@ -14,7 +14,10 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * @author arun
+ * User Entity that logs in and makes transactions on City entity. Sometimes on
+ * itself too.
+ * 
+ * @author Arun S P
  *
  */
 @Entity(name = "USERS")
@@ -81,4 +84,17 @@ public class User extends BaseEntity {
 	public String getPassword() {
 		return password;
 	}
+
+	public User() {
+	}
+
+	public User(String firstName, String lastName, String username, String password, List<UserRole> roles) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.roles = roles;
+	}
+
 }

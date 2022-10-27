@@ -4,7 +4,9 @@
 package com.arun.seecity;
 
 /**
- * @author arun
+ * An attempt to own our mistakes gracefully.
+ * 
+ * @author Arun S P
  *
  */
 public class AppException extends Exception {

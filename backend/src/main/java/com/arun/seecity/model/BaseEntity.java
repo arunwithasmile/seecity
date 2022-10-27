@@ -11,7 +11,11 @@ import javax.persistence.MappedSuperclass;
 import org.hibernate.annotations.Where;
 
 /**
- * @author arun
+ * This is a parent entity, as most entities tend to have something common in
+ * them. Don't we all? id, created time, deleted status etc. are common among
+ * all the entities.
+ * 
+ * @author Arun S P
  *
  */
 @MappedSuperclass

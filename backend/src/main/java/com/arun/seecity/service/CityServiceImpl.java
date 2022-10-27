@@ -10,6 +10,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -27,6 +29,18 @@ import com.arun.seecity.model.City;
  */
 @Service
 public class CityServiceImpl implements CityService {
+
+	@PostConstruct
+	public void init() {
+		long count = cityRepository.count();
+		if (count < 950) {
+			ClassLoader classLoader = getClass().getClassLoader();
+			InputStream inputStream = classLoader.getResourceAsStream("cities.csv");
+			List<City> cities = getCities(inputStream);
+			cityRepository.saveAll(cities);
+			System.out.println("Saved initial records");
+		}
+	}
 
 	@Autowired
 	private CityRepository cityRepository;
@@ -47,11 +61,6 @@ public class CityServiceImpl implements CityService {
 	@Override
 	public City saveCity(City city) {
 		return cityRepository.save(city);
-	}
-
-	public void bulkUpload(InputStream inputStream) {
-		List<City> cities = getCities(inputStream);
-		cityRepository.saveAll(cities);
 	}
 
 	private List<City> getCities(InputStream inputStream) {
