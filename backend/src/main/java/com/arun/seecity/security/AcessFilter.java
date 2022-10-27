@@ -32,7 +32,7 @@ public class AcessFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String jwt = jwtHelperService.resolveToken(request);
-		if (jwt != null && !jwt.isBlank()) {
+		if (jwt != null && !jwt.isEmpty()) {
 			Authentication auth = jwtHelperService.getAuthentication(jwt);
 			if (!hasCityEditRole(request, auth)) {
 				response.sendError(HttpStatus.UNAUTHORIZED.value(), "User doesn't have access to edit the resourses");
