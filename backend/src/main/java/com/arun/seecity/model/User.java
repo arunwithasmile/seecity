@@ -5,7 +5,6 @@ package com.arun.seecity.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,7 +35,7 @@ public class User extends BaseEntity {
 	@Transient
 	private String password;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
 	private List<UserRole> roles;
 
 	public String getFirstName() {

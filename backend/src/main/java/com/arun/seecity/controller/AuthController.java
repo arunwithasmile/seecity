@@ -35,4 +35,10 @@ public class AuthController {
 		}
 		return null;
 	}
+
+	@PostMapping("user/new")
+	public String addUser(@RequestBody User user) {
+		authService.saveUser(user);
+		return "User " + user.getUsername() + " added successfully";
+	}
 }

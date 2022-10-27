@@ -64,6 +64,7 @@ const CityEditPage = () => {
                     <Card style={{display: "flex", alignItems: "center", padding: "2rem"}}>
                         <form onSubmit={onSubmit}>
                             <TextField
+                                required
                                 margin="normal"
                                 fullWidth
                                 label="Name"

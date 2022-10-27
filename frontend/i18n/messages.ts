@@ -12,7 +12,8 @@ const messageStore = {
                 "login": {
                     "title": "Login",
                     "failed": "Authentication Failed"
-                }
+                },
+                "register": "Add a User"
             },
             header: {
                 "profile": "Profile"

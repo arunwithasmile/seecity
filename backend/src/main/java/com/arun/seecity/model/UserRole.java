@@ -9,6 +9,8 @@ import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author arun
  *
@@ -16,6 +18,7 @@ import javax.persistence.ManyToOne;
 @Entity(name = "USER_ROLES")
 public class UserRole extends BaseEntity {
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "USER_ID", foreignKey = @ForeignKey(name = "FK_USER_ROLES"))
 	private User user;

@@ -45,6 +45,10 @@
 
 .profile {
     width: 15%;
+    cursor: pointer;
+    // :hover {
+    //     background-color: #fafafa;
+    // }
     > div {
         display: flex;
         align-items: center;

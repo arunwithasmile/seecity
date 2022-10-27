@@ -1,10 +1,11 @@
-import { AppBar, Avatar, Box, Container, IconButton, InputBase, Menu, MenuItem, Toolbar } from "@mui/material";
+import { AppBar, Avatar, Box, Container, IconButton, InputBase, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import styles from "./AppHeader.module.scss";
 import { Stack } from "@mui/system";
 import useAuth from "../../hooks/Auth/useAuth";
 import { useEffect, useRef, useState } from "react";
 import ClearIcon from '@mui/icons-material/Clear';
+import Logout from '@mui/icons-material/Logout';
 import { useRouter } from "next/router";
 
 type Props = {
@@ -87,8 +88,14 @@ const AppHeader = ({ onSearch }: Props) => {
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 >
-                    <MenuItem onClick={onLogout}>Logout</MenuItem>
+                    <MenuItem onClick={onLogout}>
+                        <Logout fontSize="small" />
+                        <Typography style={{marginLeft: "1rem"}}>
+                            Logout
+                        </Typography>
+                    </MenuItem>
                 </Menu>
             </Toolbar>
         </AppBar>

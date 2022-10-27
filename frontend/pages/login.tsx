@@ -20,14 +20,15 @@ const LoginPage = () => {
 
             <main className={styles.main}>
                 <div style={{ maxWidth: 400 }}>
-                    <h3 style={{ textAlign: "center" }}>{translate('login.title')}</h3>
+                    <h2 style={{ textAlign: "center" }}>{translate('login.title')}</h2>
                     {
                         loginState && !loginState.success ? (
-                            <div style={{ textAlign: "center", color: "amber" }}>{translate('login.failed')}</div>
+                            <div style={{ textAlign: "center", color: "#ff6400" }}>{translate('login.failed')}</div>
                         ) : null
                     }
                     <form onSubmit={onSubmit}>
                         <TextField
+                            required
                             margin="normal"
                             fullWidth
                             label="Username"
@@ -35,6 +36,7 @@ const LoginPage = () => {
                             autoFocus
                         />
                         <TextField
+                            required
                             margin="normal"
                             fullWidth
                             name="password"
@@ -51,6 +53,7 @@ const LoginPage = () => {
                         </Button>
                     </form>
                 </div>
+                <a style={{fontSize: 13, marginTop: "2rem"}} href="register">{translate('register')}</a>
             </main>
 
             <footer className={styles.footer}>

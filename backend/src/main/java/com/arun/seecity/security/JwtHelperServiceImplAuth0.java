@@ -3,6 +3,8 @@
  */
 package com.arun.seecity.security;
 
+import static com.arun.seecity.util.AppConstants.TOKEN_EXPIRE_TIME_HRS;
+
 import java.util.Date;
 import java.util.List;
 
@@ -31,14 +33,15 @@ public class JwtHelperServiceImplAuth0 implements JwtHelperService {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	private Algorithm algorithm = Algorithm.HMAC256(secret);
 
 	public String generateToken(UserDetails userDetails, List<String> roles) {
 		String userName = userDetails.getUsername();
 		Date now = new Date();
-		String token = JWT.create().withIssuer("auth0").withSubject(userName).withClaim("roles", roles).withIssuedAt(now)
-				.withExpiresAt(new Date(now.getTime() + EXPIRE_TIME_HRS * 60 * 60 * 1000)).sign(algorithm);
+		String token = JWT.create().withIssuer("auth0").withSubject(userName).withClaim("roles", roles)
+				.withIssuedAt(now).withExpiresAt(new Date(now.getTime() + TOKEN_EXPIRE_TIME_HRS * 60 * 60 * 1000))
+				.sign(algorithm);
 		return token;
 	}
 

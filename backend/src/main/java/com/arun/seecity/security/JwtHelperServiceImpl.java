@@ -3,6 +3,8 @@
  */
 package com.arun.seecity.security;
 
+import static com.arun.seecity.util.AppConstants.TOKEN_EXPIRE_TIME_HRS;
+
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -28,9 +30,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 //@Primary
 public class JwtHelperServiceImpl implements JwtHelperService {
 
-	private static final String secret = "(ityS3cret";
-	private static final int EXPIRE_TIME_HRS = 8;
-
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -44,7 +43,7 @@ public class JwtHelperServiceImpl implements JwtHelperService {
 		Claims claims = Jwts.claims().setSubject(userName);
 		claims.put("roles", claims);
 		JwtBuilder builder = Jwts.builder().setClaims(claims).setIssuedAt(now)
-				.setExpiration(new Date(now.getTime() + EXPIRE_TIME_HRS * 60 * 60 * 1000))
+				.setExpiration(new Date(now.getTime() + TOKEN_EXPIRE_TIME_HRS * 60 * 60 * 1000))
 				.signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encode(secret.getBytes()));
 		String token = builder.compact();
 		return token;

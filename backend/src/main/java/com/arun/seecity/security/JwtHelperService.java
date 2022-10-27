@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 public interface JwtHelperService {
 
 	static final String secret = "(ityS3cret";
-	static final int EXPIRE_TIME_HRS = 8;
 
 	public String generateToken(UserDetails userDetails, List<String> roles);
 
