@@ -2,18 +2,15 @@ import Head from 'next/head'
 import styles from '../styles/index.module.css'
 import AppHeader from '../components/AppHeader';
 import useTranslate from '../hooks/useTranslate';
-import useRestApi from '../hooks/RestApi/useRestApi';
-import { useEffect } from 'react';
+import { useState } from 'react';
+import CityListView from '../components/CityListView';
 
 const HomePage = () => {
   const translate = useTranslate();
-  const { get } = useRestApi();
-  useEffect(() => {
-    get("http://localhost:8080/cities");
-  }, []);
+  const [searchString, setSearchString] = useState("");
   return (
     <>
-      <AppHeader />
+      <AppHeader onSearch={(val) => setSearchString(val)} />
       <div className={styles.container}>
         <Head>
           <title>Home - See City</title>
@@ -21,13 +18,17 @@ const HomePage = () => {
         </Head>
 
         <main className={styles.main}>
-          {translate('welcome')}
+          <div style={{padding: "0.5rem"}}>
+            {translate('welcome')}
+          </div>
+          <CityListView searchString={searchString} />
         </main>
 
         <footer className={styles.footer}>
           {translate('created-by')} Arun S P
         </footer>
-      </div></>
+      </div>
+    </>
   )
 }
 

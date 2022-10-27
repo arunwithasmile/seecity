@@ -71,6 +71,10 @@ public class AuthUserDetails implements UserDetails {
 		return true;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
 	public List<String> getRoles() {
 		return user.getRoles().stream().map(role -> role.getRole()).collect(Collectors.toList());
 	}

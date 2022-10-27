@@ -52,8 +52,13 @@ public class AuthService {
 		return null;
 	}
 
+	public User getUser(String userName) {
+		AuthUserDetails userDetails = (AuthUserDetails) userDetailsService.loadUserByUsername(userName);
+		return userDetails.getUser();
+	}
+
 	public void saveUser(User user) {
-		user.setPasswordX(passwordEncoder.encode(user.getPasswordX()));
+		user.setPasswordX(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 	}
 }

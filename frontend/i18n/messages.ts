@@ -9,12 +9,17 @@ const messageStore = {
             common: {
                 "welcome": "Welcome to See City!",
                 "created-by": "Created by",
-                daanger: {
-                    delete: "Delete"
+                "login": {
+                    "title": "Login",
+                    "failed": "Authentication Failed"
                 }
             },
             header: {
                 "profile": "Profile"
+            },
+            city: {
+                edit: "Edit City",
+                empty: "No Cities found. Try a different search maybe?"
             }
         }
     },

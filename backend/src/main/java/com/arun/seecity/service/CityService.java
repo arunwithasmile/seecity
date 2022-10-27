@@ -15,4 +15,6 @@ public interface CityService {
 
 	public void bulkUpload(InputStream inputStream);
 
+	public City saveCity(City city);
+
 }

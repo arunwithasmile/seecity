@@ -10,6 +10,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author arun
@@ -27,7 +30,11 @@ public class User extends BaseEntity {
 	private String username;
 
 	@Column(nullable = false)
+	@JsonIgnore
 	private String passwordX;
+
+	@Transient
+	private String password;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<UserRole> roles;
@@ -70,5 +77,9 @@ public class User extends BaseEntity {
 
 	public List<UserRole> getRoles() {
 		return roles;
+	}
+
+	public String getPassword() {
+		return password;
 	}
 }

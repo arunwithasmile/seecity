@@ -6,11 +6,12 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
     --color-bg: white;
+    --web-wash: #f4f7fa;
     --color-fg: #444;
     --color-accent: #ae9125;
 
     color: var(--color-fg);
-    background: var(--color-bg);
+    background: var(--web-wash);
 }
 
 a {

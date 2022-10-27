@@ -31,6 +31,7 @@ public class CityServiceImpl implements CityService {
 	@Autowired
 	private CityRepository cityRepository;
 
+	@Override
 	public Page<City> getCities(String searchString, Pageable pageParams) {
 		if (searchString == null || searchString.isBlank()) {
 			return cityRepository.findAll(pageParams);
@@ -38,8 +39,14 @@ public class CityServiceImpl implements CityService {
 		return cityRepository.findByNameContainingIgnoreCase(searchString, pageParams);
 	}
 
+	@Override
 	public City getCity(long id) {
 		return cityRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public City saveCity(City city) {
+		return cityRepository.save(city);
 	}
 
 	public void bulkUpload(InputStream inputStream) {

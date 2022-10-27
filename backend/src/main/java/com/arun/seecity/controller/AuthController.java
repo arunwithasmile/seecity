@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.arun.seecity.model.AuthRequest;
 import com.arun.seecity.model.AuthResponse;
+import com.arun.seecity.model.User;
 import com.arun.seecity.security.AuthService;
 
 /**
@@ -28,8 +29,9 @@ public class AuthController {
 	@PostMapping
 	public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthRequest authRequest) {
 		String token = authService.authenticate(authRequest);
+		User user = authService.getUser(authRequest.getUsername());
 		if (token != null && !token.isEmpty()) {
-			return ResponseEntity.ok(new AuthResponse(token));
+			return ResponseEntity.ok(new AuthResponse(token, user));
 		}
 		return null;
 	}
