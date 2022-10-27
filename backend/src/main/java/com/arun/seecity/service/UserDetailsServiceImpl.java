@@ -14,7 +14,10 @@ import com.arun.seecity.model.User;
 import com.arun.seecity.security.AuthUserDetails;
 
 /**
- * @author arun
+ * Service Class to provide the User Details from database to the Spring
+ * Security Context.
+ * 
+ * @author Arun S P
  *
  */
 @Service

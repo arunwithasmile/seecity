@@ -13,7 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 /**
- * @author arun
+ * This helper service takes care of all the tedious tasks of generating,
+ * parsing, validating tokens.
+ * 
+ * @author Arun S P
  *
  */
 @Service

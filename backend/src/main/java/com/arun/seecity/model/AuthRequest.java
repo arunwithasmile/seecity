@@ -4,7 +4,10 @@
 package com.arun.seecity.model;
 
 /**
- * @author arun
+ * This is the hopeful object that arrives at our door. We use this to decide if
+ * we open our doors for the client.
+ * 
+ * @author Arun S P
  *
  */
 public class AuthRequest {

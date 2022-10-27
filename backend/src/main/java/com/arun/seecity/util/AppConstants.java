@@ -4,7 +4,9 @@
 package com.arun.seecity.util;
 
 /**
- * @author arun
+ * Class to hold all the Constants at one place.
+ * 
+ * @author Arun S P
  *
  */
 public interface AppConstants {

@@ -9,7 +9,10 @@ import org.springframework.http.ResponseEntity;
 import com.arun.seecity.AppException;
 
 /**
- * @author arun
+ * Parent REST Controller. All Controllers must extend this, so that all the
+ * common fuctionalities such as exception handling can be written here.
+ * 
+ * @author Arun S P
  *
  */
 public class BaseController {

@@ -3,6 +3,10 @@
  */
 package com.arun.seecity.security;
 
+import java.util.Arrays;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -41,6 +45,22 @@ public class AuthServiceImpl implements AuthService {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
+
+	@PostConstruct
+	public void init() {
+		long count = userRepository.count();
+		if (count == 0) {
+			User admin = new User("Admin", "Seecity", "admin.seecity", "@dmin-user1",
+					Arrays.asList(new UserRole("admin")));
+			saveUser(admin);
+			User visitor = new User("Bill", "Pad", "bill.pad", "@bill-pad1",
+					Arrays.asList(new UserRole("ROLE_ALLOW_READ")));
+			saveUser(visitor);
+			User editor = new User("Kevin", "Bacon", "kevin.bacon", "@kevin-bacon1",
+					Arrays.asList(new UserRole("ROLE_ALLOW_EDIT")));
+			saveUser(editor);
+		}
+	}
 
 	@Override
 	public String authenticate(AuthRequest authRequest) {

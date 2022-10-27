@@ -4,7 +4,12 @@
 package com.arun.seecity.model;
 
 /**
- * @author arun
+ * The happy response indicating that the Authentication was successful and that
+ * we trust the request. And we will issue a token here that we expect to be
+ * presented with in subsequent requests. We also return the User object, so
+ * that the client can use it to display context.
+ * 
+ * @author Arun S P
  *
  */
 public class AuthResponse {

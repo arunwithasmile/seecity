@@ -14,7 +14,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.arun.seecity.model.User;
 
 /**
- * @author arun
+ * This is also a User entity but used mostly by Spring Security for all the
+ * authentication transactions.
+ * 
+ * @author Arun S P
  *
  */
 public class AuthUserDetails implements UserDetails {

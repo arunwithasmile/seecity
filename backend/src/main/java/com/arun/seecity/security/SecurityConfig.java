@@ -24,7 +24,11 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
- * @author arun
+ * This is a Configuration Class that defines all the rules of the security for
+ * the app. It defines what users can send the requests, what endpoints are
+ * guarded etc.
+ * 
+ * @author Arun S P
  *
  */
 @Configuration
@@ -37,6 +41,13 @@ public class SecurityConfig {
 	@Autowired
 	private AuthFilter authFilter;
 
+	/**
+	 * Takes care of gurading endpoints behind authenticaton, defining filters etc.
+	 * 
+	 * @param http
+	 * @return
+	 * @throws Exception
+	 */
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable().cors().and().authorizeRequests().antMatchers("/ping", "/auth", "/user/new").permitAll()

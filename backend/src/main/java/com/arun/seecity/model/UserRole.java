@@ -12,7 +12,11 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * @author arun
+ * Roles define what level of access does a user hold in our app. Admin, for
+ * instance can reach everything the sunlight touches. Some users are just here
+ * to browse. They will have READ access only.
+ * 
+ * @author Arun S P
  *
  */
 @Entity(name = "USER_ROLES")
@@ -50,6 +54,13 @@ public class UserRole extends BaseEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public UserRole() {
+	}
+
+	public UserRole(String role) {
+		this.role = role;
 	}
 
 }

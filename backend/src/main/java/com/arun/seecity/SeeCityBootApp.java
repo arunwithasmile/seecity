@@ -7,7 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author arun
+ * It all starts here. Big Bang like.
+ * 
+ * @author Arun S P
  *
  */
 @SpringBootApplication

@@ -7,7 +7,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
- * @author arun
+ * Star of the show. This is the Entity we're all here. We use this to show,
+ * edit, and save Cities in our application.
+ * 
+ * @author Arun S P
  *
  */
 @Entity(name = "CITIES")

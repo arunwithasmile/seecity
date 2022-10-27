@@ -16,7 +16,9 @@ import com.arun.seecity.model.User;
 import com.arun.seecity.security.AuthService;
 
 /**
- * @author arun
+ * The gatekeeper. This handles all the authentications and user creations.
+ * 
+ * @author Arun S P
  *
  */
 @RestController
@@ -26,6 +28,12 @@ public class AuthController {
 	@Autowired
 	private AuthService authService;
 
+	/**
+	 * Authenticates a user using username & password.
+	 * 
+	 * @param authRequest Object containing the credentials
+	 * @return JWT Token if the authentication was successful. Null otherwise.
+	 */
 	@PostMapping
 	public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthRequest authRequest) {
 		String token = authService.authenticate(authRequest);
@@ -36,6 +44,12 @@ public class AuthController {
 		return null;
 	}
 
+	/**
+	 * Adds a new User. Saves corresponding roles as well.
+	 * 
+	 * @param user - The object representing the user.
+	 * @return
+	 */
 	@PostMapping("user/new")
 	public String addUser(@RequestBody User user) {
 		authService.saveUser(user);
