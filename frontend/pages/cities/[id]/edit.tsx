@@ -50,7 +50,7 @@ const CityEditPage = () => {
         if (edited && postState.success) {
             router.push("/");
         }
-    }, [edited, postState]);
+    }, [postState]);
     return (
         <>
             <Head>
@@ -58,8 +58,13 @@ const CityEditPage = () => {
                 <link rel="icon" href="/favicon.png" />
             </Head>
             <AppHeader />
-            <div style={{ textAlign: "center", marginTop: "3rem" }}>{translate('edit', 'city')}</div>
+            <div style={{ textAlign: "center", marginTop: "3rem" }}>{translate('edit.title', 'city')}</div>
             <main className={styles.main} style={{ paddingTop: 0, minHeight: "80vh" }}>
+                {
+                    edited && !postState.success ? (
+                        <div style={{ textAlign: "center", color: "#ff6400", translate: "0 -1rem" }}>{translate('edit.access.denied', 'city')}</div>
+                    ) : null
+                }
                 <Stack direction="row" justifyContent="space-around" width="80%">
                     <Card style={{display: "flex", alignItems: "center", padding: "2rem"}}>
                         <form onSubmit={onSubmit}>
