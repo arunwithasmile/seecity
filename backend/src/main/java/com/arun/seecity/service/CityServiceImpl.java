@@ -33,7 +33,7 @@ public class CityServiceImpl implements CityService {
 
 	@Override
 	public Page<City> getCities(String searchString, Pageable pageParams) {
-		if (searchString == null || searchString.isBlank()) {
+		if (searchString == null || searchString.isEmpty()) {
 			return cityRepository.findAll(pageParams);
 		}
 		return cityRepository.findByNameContainingIgnoreCase(searchString, pageParams);
